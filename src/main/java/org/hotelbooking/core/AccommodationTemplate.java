@@ -25,11 +25,11 @@ public class AccommodationTemplate {
         return view;
     }
 
-    public void setIsBedKingSize(boolean bedKingSize) throws Exception {
+    public void setIsBedKingSize(boolean bedKingSize) {
         if (accommodationType == DOUBLE_ROOM) {
             isBedKingSize = bedKingSize;
         } else {
-            throw new Exception("Accommodation type must be Double Room.");
+            System.out.println("Accommodation type must be Double Room.");
         }
     }
 
@@ -37,14 +37,13 @@ public class AccommodationTemplate {
         return isBedKingSize;
     }
 
-    public void setHasEnsuiteBathroom(boolean EnsuiteBathroom) throws Exception {
+    public void setHasEnsuiteBathroom(boolean EnsuiteBathroom) {
 
             if (accommodationType == SUITE) {
                 hasEnsuiteBathroom = EnsuiteBathroom;
             } else {
-                throw new Exception("Accommodation type must be Suite.");
+                System.out.println("Accommodation type must be Suite.");
             }
-
 
     }
 
@@ -52,13 +51,12 @@ public class AccommodationTemplate {
         return hasEnsuiteBathroom;
     }
 
-
-    public void setHasJacuzzi(boolean jacuzzi) throws Exception {
+    public void setHasJacuzzi(boolean jacuzzi) {
 
             if (accommodationType == SUITE) {
                 hasJacuzzi = jacuzzi;
             } else {
-                throw new Exception("Accommodation type must be Suite.");
+                System.out.println("Accommodation type must be Suite.");
             }
 
     }
@@ -68,14 +66,13 @@ public class AccommodationTemplate {
     }
 
 
-    public void setHasProjector(boolean projector) throws Exception{
+    public void setHasProjector(boolean projector) {
 
             if (accommodationType == CONFERENCE_ROOM) {
                 hasProjector = projector;
             } else {
-                throw new Exception("Accommodation type must be Conference Room.");
+                System.out.println("Accommodation type must be Conference Room.");
             }
-
 
     }
 
@@ -84,14 +81,13 @@ public class AccommodationTemplate {
     }
 
 
-    public void setHasPool(boolean pool) throws Exception {
+    public void setHasPool(boolean pool) {
 
             if (accommodationType == VILLA) {
                 hasPool = pool;
             } else {
-                throw new Exception("Accommodation type must be Villa.");
+                System.out.println("Accommodation type must be Villa.");
             }
-
 
     }
 
@@ -100,12 +96,12 @@ public class AccommodationTemplate {
     }
 
 
-    public void setMinimumNumberOfRooms(int minimumNumberOfRooms) throws Exception{
+    public void setMinimumNumberOfRooms(int minimumNumberOfRooms) {
 
             if (accommodationType == CHALET) {
                 this.minimumNumberOfRooms = minimumNumberOfRooms;
             } else {
-                throw new Exception("Accommodation type must be Chalet.");
+                System.out.println("Accommodation type must be Chalet.");
             }
 
     }
