@@ -33,7 +33,7 @@ public class AccommodationTemplate {
         }
     }
 
-    public boolean getIssBedKingSize() {
+    public boolean hasBedKingSize() {
         return isBedKingSize;
     }
 
@@ -47,7 +47,7 @@ public class AccommodationTemplate {
 
     }
 
-    public boolean getHasEnsuiteBathroom() {
+    public boolean hasEnsuiteBathroom() {
         return hasEnsuiteBathroom;
     }
 
@@ -61,7 +61,7 @@ public class AccommodationTemplate {
 
     }
 
-    public boolean getHasJacuzzi() {
+    public boolean hasJacuzzi() {
         return hasJacuzzi;
     }
 
@@ -76,7 +76,7 @@ public class AccommodationTemplate {
 
     }
 
-    public boolean getHasProjector() {
+    public boolean hasProjector() {
         return hasProjector;
     }
 
@@ -91,7 +91,7 @@ public class AccommodationTemplate {
 
     }
 
-    public boolean getHasPool() {
+    public boolean hasPool() {
         return hasPool;
     }
 
