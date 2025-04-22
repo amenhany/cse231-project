@@ -1,28 +1,38 @@
 package org.hotelbooking.core;
-
 public abstract class Room extends Accommodation {
     private int roomNumber;
     RoomView view;
     // snackInventory; snackInventory?? *megamind meme*
-    // connectedRoom nullable? What is this sorcery
+   Room connectedRoom;
 
+    Room(){
 
-    Room(String accommodationId,double pricePerNight,double discount,int capacity,int roomNumber,RoomView view)
-    {   super(accommodationId, pricePerNight, discount, capacity);
+    }
+
+    Room(double pricePerNight,int capacity,int roomNumber,RoomView view)
+    {   super(pricePerNight,capacity);
         this.roomNumber=roomNumber;
         this.view=view;
+        setAccommodationId("RM"+roomNumber);
     }
+
     @Override
-    public   boolean matches(AccommodationTemplate template){}  // ALRA7MA YA AMEN
+    public   boolean matches(AccommodationTemplate template){
+        return false;
+    }
 
     @Override
     public   void displayInfo(){
 
+    }
+
+    public  double getSnackBill(){
+        return 0.0;
+    }
+
+    public  void refillSnacks(){
+
     };
-
-
-    public  double getSnackBill(){};
-    public  void refillSnacks(){};
 }
 
 

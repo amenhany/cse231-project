@@ -1,5 +1,5 @@
 package org.hotelbooking.core;
-
+//Hazem Wins
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -9,22 +9,37 @@ public abstract class Accommodation implements Comparable<Accommodation>{
     private double discount;
     private int capacity;
 
-    Accommodation(String accommodationId,double pricePerNight,double discount,int capacity){
-        this.accommodationId=accommodationId;
+    Accommodation(){
+
+    }
+
+    Accommodation(double pricePerNight,int capacity){
         this.pricePerNight=pricePerNight;
-        this.discount=discount;
         this.capacity=capacity;
     }
 
-    public  double getPricePerNight(){return pricePerNight;}
-    public  String getAccommodationId(){return accommodationId;}
-    public  double calculatePrice(LocalDateTime startDate,LocalDateTime endDate){
+    public double getPricePerNight(){
+        return pricePerNight;
+    }
+
+    public String getAccommodationId(){
+        return accommodationId;
+    }
+
+    public void setAccommodationId(String x){
+        accommodationId=x;
+    }
+
+    public double calculatePrice(LocalDateTime startDate,LocalDateTime endDate){
         long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
         return daysBetween*pricePerNight;
     }
-    public  abstract boolean matches(AccommodationTemplate template);
-    public  abstract void displayInfo();
+
+    public abstract boolean matches(AccommodationTemplate template);
+    public abstract void displayInfo();
 
     @Override
-    public abstract int compareTo(Accommodation o);
+    public int compareTo(Accommodation o){
+        return 0;
+    }
 }

@@ -8,7 +8,7 @@ public class ConferenceRoom extends Room implements ExtraFeeApplicable{
     private boolean hasProjector;
 
 
-    public ConferenceRoom()
+    public ConferenceRoom(){};
     public boolean hasProjector() {
         return hasProjector;
     }
@@ -24,11 +24,16 @@ public class ConferenceRoom extends Room implements ExtraFeeApplicable{
     }
 
     public  boolean matches(AccommodationTemplate template){
-
+        return false;
     }
     @Override
     public  void displayInfo(){
         super.displayInfo();
 
+    }
+
+    @Override
+    public double getExtraFees() {
+        return 0;
     }
 }
