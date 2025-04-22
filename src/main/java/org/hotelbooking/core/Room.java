@@ -1,19 +1,15 @@
 package org.hotelbooking.core;
 public abstract class Room extends Accommodation {
-    private int roomNumber;
-    RoomView view;
+    static private int numberOfRooms=0;
+    private RoomView view;
     // snackInventory; snackInventory?? *megamind meme*
-   Room connectedRoom;
+   protected Room connectedRoom;
 
-    Room(){
 
-    }
 
-    Room(double pricePerNight,int capacity,int roomNumber,RoomView view)
-    {   super(pricePerNight,capacity);
-        this.roomNumber=roomNumber;
+    Room(double pricePerNight,int capacity,RoomView view)
+    {   super(pricePerNight,capacity,"RM"+ ++numberOfRooms);
         this.view=view;
-        setAccommodationId("RM"+roomNumber);
     }
 
     @Override

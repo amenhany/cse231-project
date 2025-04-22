@@ -3,12 +3,18 @@ package org.hotelbooking.core;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class ConferenceRoom extends Room implements ExtraFeeApplicable{
+public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable{
+    private static int numberOfConferenceRooms=0;
     private double hourlyRate;
     private boolean hasProjector;
 
 
-    public ConferenceRoom(){};
+    public ConferenceRoom(double hourlyRate,boolean hasProjector){
+        super("CO"+ ++numberOfConferenceRooms);
+        this.hourlyRate= hourlyRate;
+        this.hasProjector= hasProjector;
+    }
+
     public boolean hasProjector() {
         return hasProjector;
     }
@@ -28,8 +34,8 @@ public class ConferenceRoom extends Room implements ExtraFeeApplicable{
     }
     @Override
     public  void displayInfo(){
-        super.displayInfo();
-
+        System.out.println("Conference Room Info:\nAccommodation ID: " +getAccommodationId() + "\nHourly Rate:  " +
+                hourlyRate);
     }
 
     @Override

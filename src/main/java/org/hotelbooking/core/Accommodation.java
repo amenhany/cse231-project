@@ -4,18 +4,19 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public abstract class Accommodation implements Comparable<Accommodation>{
-    private String accommodationId;
+    final private String accommodationId;
     private double pricePerNight;
-    private double discount;
+    protected double discount;
     private int capacity;
 
-    Accommodation(){
-
+    Accommodation(String accommodationId){
+    this.accommodationId=accommodationId;
     }
 
-    Accommodation(double pricePerNight,int capacity){
+    Accommodation(double pricePerNight,int capacity,String accommodationId){
         this.pricePerNight=pricePerNight;
         this.capacity=capacity;
+        this.accommodationId= accommodationId;
     }
 
     public double getPricePerNight(){
@@ -24,10 +25,6 @@ public abstract class Accommodation implements Comparable<Accommodation>{
 
     public String getAccommodationId(){
         return accommodationId;
-    }
-
-    public void setAccommodationId(String x){
-        accommodationId=x;
     }
 
     public double calculatePrice(LocalDateTime startDate,LocalDateTime endDate){

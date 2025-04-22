@@ -1,16 +1,12 @@
 package org.hotelbooking.core;
 
-import java.time.LocalDateTime;
-
 public class Villa extends Accommodation implements ExtraFeeApplicable{
-    int villaNumber;
-    boolean hasPool;
+    private static int numberOfVillas=0;
+    private boolean hasPool;
 
-    Villa(double pricePerNight,int capacity,int villaNumber,boolean hasPool){
-        super(pricePerNight,capacity);
-        this.villaNumber=villaNumber;
+    Villa(double pricePerNight,int capacity,boolean hasPool){
+        super(pricePerNight,capacity,"VL"+ ++numberOfVillas);
         this.hasPool=hasPool;
-        setAccommodationId("VL" + villaNumber);
     }
 
     public  boolean matches(AccommodationTemplate template){
@@ -19,7 +15,7 @@ public class Villa extends Accommodation implements ExtraFeeApplicable{
 
     @Override
     public  void displayInfo(){
-        System.out.println("Villa Info:- \n Villa ID: " +getAccommodationId()+villaNumber + "Pool available: " + hasPool
+        System.out.println("Villa Info:- \n Villa ID: " +getAccommodationId() + "Pool available: " + hasPool
             +"\nPrice/night: "+getPricePerNight());
     }
 
