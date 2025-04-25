@@ -1,4 +1,6 @@
 package org.hotelbooking.core;
+import org.hotelbooking.core.*;
+
 import java.time.LocalDateTime;
 
 public class Booking {
