@@ -30,8 +30,7 @@ public class Booking {
         }
     }
     public double calculateBill(){
-        double total=0 ;
-        return total;
+        return 0 ;
     }
 
     public Booking() {
