@@ -6,4 +6,4 @@ public enum BoardBasis {
     FULL_BOARD,
     HALF_BOARD,
     ALL_INCLUSIVE,
-}
+  }
