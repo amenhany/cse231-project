@@ -1,21 +1,27 @@
 package org.hotelbooking.core;
 
 public class Guest {
-    String name ;
-    int age ;
-    char gender ;
-    String email ;
-    Guest spouse ;
-    public void displayInfo(){
-        System.out.println("Name: "+name);
-        System.out.println("Age: "+age);
-        System.out.println("Gender: "+gender);
-        System.out.println("Email: "+email);
-        System.out.println("Name: "+spouse.name);
-        System.out.println("Age: "+spouse.age);
-        System.out.println("Email: "+spouse.email);
-    }
+    private String name ;
+    private int age ;
+    private char gender ;
+    private String email ;
+    private Guest spouse ;
+
+        @Override
+        public String toString() {
+            return "Name: "+name+"\nAge: "+age+"\nGender: "+gender+"\nEmail: "+email;
+        }
+    public void displayInfo() {
+        System.out.println(this);
+        if (spouse != null) {
+            System.out.println("Spouse Info:");
+            System.out.println(spouse.toString());
+        }
+        }
     public Guest getSpouse(){
         return spouse ;
     }
-}
+    }
+
+
+
