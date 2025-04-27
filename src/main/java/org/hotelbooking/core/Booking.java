@@ -1,7 +1,39 @@
 package org.hotelbooking.core;
+import org.hotelbooking.core.*;
+
+import java.time.LocalDateTime;
 
 public class Booking {
     private Accommodation accommodation;
+    private AccommodationTemplate desiredAccommodation;
+    private BookingStatus status;
+    private BoardBasis boardBasis;
+    private Guest guests[] ;
+    private LocalDateTime startDate ;
+    private LocalDateTime endDate ;
+    public BookingStatus getStatus(){
+        return status ;
+    }
+    public AccommodationTemplate getDesiredAccommodation() {
+        return desiredAccommodation;
+    }
+
+    public void cancelBooking(){
+        if (status == BookingStatus.REJECTED || status == BookingStatus.CANCELLED){
+            System.out.println("Booking is cancelled.");
+        }
+        else
+            status = BookingStatus.CANCELLED;
+    }
+    public void displayInfo() {
+        System.out.println("Accommodation: "+accommodation+"\nDesired Accommodation: "+desiredAccommodation+"\nBooking Status: "+status+"\nBoard Basis: "+boardBasis+"\nStart Date: "+startDate+"\nEnd Date: "+endDate);
+        for (int i=0;i<guests.length;i++){
+            System.out.println("Guest "+ i+1 + ": "+guests[i].toString());
+        }
+    }
+    public double calculateBill(){
+        return 0 ;
+    }
 
     public Booking() {
 
@@ -12,4 +44,5 @@ public class Booking {
     void setAccommodation(Accommodation accommodation) {
         this.accommodation = accommodation;
     }
+
 }
