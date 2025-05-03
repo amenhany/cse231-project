@@ -1,4 +1,7 @@
 package org.hotelbooking.core;
+
+
+
 public abstract class Room extends Accommodation {
     static private int numberOfRooms=0;
     private RoomView view;
