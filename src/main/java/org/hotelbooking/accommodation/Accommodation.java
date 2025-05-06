@@ -1,22 +1,21 @@
-package org.hotelbooking.core;
-//Hazem Wins
+package org.hotelbooking.accommodation;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public abstract class Accommodation implements Comparable<Accommodation>{
+public abstract class Accommodation implements Comparable<Accommodation> {
     final private String accommodationId;
     private double pricePerNight;
     protected double discount;
     private int capacity;
 
-    Accommodation(String accommodationId){
-    this.accommodationId=accommodationId;
-    }
 
-    Accommodation(double pricePerNight,int capacity,String accommodationId){
-        this.pricePerNight=pricePerNight;
-        this.capacity=capacity;
-        this.accommodationId= accommodationId;
+    Accommodation(String accommodationId, double pricePerNight, int capacity) {
+        this.accommodationId = accommodationId;
+        this.pricePerNight = pricePerNight;
+        this.capacity = capacity;
     }
 
     public double getPricePerNight(){
@@ -36,7 +35,7 @@ public abstract class Accommodation implements Comparable<Accommodation>{
     public abstract void displayInfo();
 
     @Override
-    public int compareTo(Accommodation o){
+    public int compareTo(@NotNull Accommodation o){
         return 0;
     }
 }

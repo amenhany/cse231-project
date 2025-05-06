@@ -1,11 +1,13 @@
-package org.hotelbooking.core;
+package org.hotelbooking.accommodation;
 
-public class Suite extends Room implements Connectable,ExtraFeeApplicable,Offerable{
+
+public class Suite extends Room implements Connectable, ExtraFeeApplicable, Offerable{
     private boolean hasJacuzzi;
     private boolean hasEnsuiteBathroom;
 
-    Suite(double pricePerNight,int capacity,RoomView view,boolean hasJacuzzi,boolean hasEnsuiteBathroom){
-        super(pricePerNight,capacity,view);
+
+    Suite(int roomNumber, double pricePerNight, int capacity, RoomView view, boolean hasJacuzzi, boolean hasEnsuiteBathroom) {
+        super(roomNumber, pricePerNight, capacity, view);
         this.hasJacuzzi=hasJacuzzi;
         this.hasEnsuiteBathroom=hasEnsuiteBathroom;
     }
@@ -24,7 +26,7 @@ public class Suite extends Room implements Connectable,ExtraFeeApplicable,Offera
     }
 
     @Override
-    public Room getConnectedRoom(Room y) {
+    public Room getConnectedRoom() {
         return connectedRoom;
     }
 
@@ -35,7 +37,7 @@ public class Suite extends Room implements Connectable,ExtraFeeApplicable,Offera
 
     @Override
     public void setDiscount(double discount) {
-        this.discount=discount;
+        this.discount = discount;
     }
 
     @Override

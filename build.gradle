@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation 'org.jetbrains:annotations:24.0.1'
+}
+
 javafx {
     version = "21"
     modules = [ 'javafx.controls' ]

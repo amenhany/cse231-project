@@ -1,4 +1,4 @@
-package org.hotelbooking.core;
+package org.hotelbooking.accommodation;
 
 public enum AccommodationType {
 

@@ -1,11 +1,18 @@
 package org.hotelbooking.core;
 
+import org.jetbrains.annotations.Nullable;
+
 public class Guest {
     private String name ;
     private int age ;
     private char gender ;
     private String email ;
-    private Guest spouse ;
+    @Nullable private Guest spouse ;
+
+
+    public Guest getSpouse(){
+        return spouse ;
+    }
 
     @Override
     public String toString() {
@@ -17,9 +24,6 @@ public class Guest {
             System.out.println("Spouse Info:");
             System.out.println(spouse.toString());
         }
-    }
-    public Guest getSpouse(){
-        return spouse ;
     }
 }
 

@@ -1,11 +1,13 @@
-package org.hotelbooking.core;
+package org.hotelbooking.accommodation;
+
 
 public class DoubleRoom extends Room implements Connectable,Offerable{
     private boolean isBedKingSize;
 
-    DoubleRoom(double pricePerNight,int capacity,RoomView view,Boolean isBedKingSize){
-        super(pricePerNight,capacity,view);
-        this.isBedKingSize=isBedKingSize;
+
+    DoubleRoom(int roomNumber, double pricePerNight, RoomView view, boolean isBedKingSize){
+        super(roomNumber, pricePerNight, 2, view);
+        this.isBedKingSize = isBedKingSize;
     }
 
     public boolean isBedKingSize() {
@@ -18,13 +20,13 @@ public class DoubleRoom extends Room implements Connectable,Offerable{
     }
 
     @Override
-    public Room getConnectedRoom(Room y) {
+    public Room getConnectedRoom() {
         return connectedRoom;
     }
 
     @Override
     public void setDiscount(double discount) {
-        this.discount=discount;
+        this.discount = discount;
     }
 
     @Override

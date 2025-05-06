@@ -1,8 +1,6 @@
-package org.hotelbooking.core;
+package org.hotelbooking.accommodation;
 
 public interface Connectable {
-
-
    public void setConnectedRoom(Room x);
-   public Room getConnectedRoom(Room y);
+   public Room getConnectedRoom();
 }

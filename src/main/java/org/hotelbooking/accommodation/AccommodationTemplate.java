@@ -1,6 +1,6 @@
-package org.hotelbooking.core;
+package org.hotelbooking.accommodation;
 
-import static org.hotelbooking.core.AccommodationType.*;
+import static org.hotelbooking.accommodation.AccommodationType.*;
 
 public class AccommodationTemplate {
 
@@ -12,6 +12,7 @@ public class AccommodationTemplate {
     boolean hasProjector;
     boolean hasPool;
     int minimumNumberOfRooms;
+
 
     AccommodationTemplate(AccommodationType accommodationType) {
         this.accommodationType = accommodationType;
