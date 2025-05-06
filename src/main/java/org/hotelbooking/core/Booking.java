@@ -41,7 +41,6 @@ public class Booking {
         this.accommodation = accommodation;
     }
 
-
     public void displayInfo() {
         System.out.println("Accommodation: " + accommodation + "\nDesired Accommodation: " + desiredAccommodation + "\nBooking Status: " + status
                 +"\nBoard Basis: " + boardBasis + "\nStart Date: " + startDate + "\nEnd Date: " + endDate);

@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public abstract class Accommodation implements Comparable<Accommodation> {
-    final private String accommodationId;
-    private double pricePerNight;
-    protected double discount;
+    private final String accommodationId;
+    private final double pricePerNight;
     private int capacity;
+    protected double discount;
 
 
-    Accommodation(String accommodationId, double pricePerNight, int capacity) {
+    protected Accommodation(String accommodationId, double pricePerNight, int capacity) {
         this.accommodationId = accommodationId;
         this.pricePerNight = pricePerNight;
         this.capacity = capacity;

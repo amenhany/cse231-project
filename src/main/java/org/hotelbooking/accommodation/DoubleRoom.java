@@ -1,11 +1,13 @@
 package org.hotelbooking.accommodation;
 
 
+import org.jetbrains.annotations.Nullable;
+
 public class DoubleRoom extends Room implements Connectable,Offerable{
     private boolean isBedKingSize;
 
 
-    DoubleRoom(int roomNumber, double pricePerNight, RoomView view, boolean isBedKingSize){
+    public DoubleRoom(int roomNumber, double pricePerNight, RoomView view, boolean isBedKingSize){
         super(roomNumber, pricePerNight, 2, view);
         this.isBedKingSize = isBedKingSize;
     }
@@ -20,7 +22,7 @@ public class DoubleRoom extends Room implements Connectable,Offerable{
     }
 
     @Override
-    public Room getConnectedRoom() {
+    public @Nullable Room getConnectedRoom() {
         return connectedRoom;
     }
 

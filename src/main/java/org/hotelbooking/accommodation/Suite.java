@@ -1,12 +1,14 @@
 package org.hotelbooking.accommodation;
 
 
+import org.jetbrains.annotations.Nullable;
+
 public class Suite extends Room implements Connectable, ExtraFeeApplicable, Offerable{
     private boolean hasJacuzzi;
     private boolean hasEnsuiteBathroom;
 
 
-    Suite(int roomNumber, double pricePerNight, int capacity, RoomView view, boolean hasJacuzzi, boolean hasEnsuiteBathroom) {
+    public Suite(int roomNumber, double pricePerNight, int capacity, RoomView view, boolean hasJacuzzi, boolean hasEnsuiteBathroom) {
         super(roomNumber, pricePerNight, capacity, view);
         this.hasJacuzzi=hasJacuzzi;
         this.hasEnsuiteBathroom=hasEnsuiteBathroom;
@@ -26,7 +28,7 @@ public class Suite extends Room implements Connectable, ExtraFeeApplicable, Offe
     }
 
     @Override
-    public Room getConnectedRoom() {
+    public @Nullable Room getConnectedRoom() {
         return connectedRoom;
     }
 

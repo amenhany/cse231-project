@@ -3,7 +3,7 @@ package org.hotelbooking.accommodation;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable{
+public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable {
     private static int numberOfConferenceRooms=0;
     private double hourlyRate;
     private boolean hasProjector;

@@ -7,7 +7,7 @@ public abstract class Room extends Accommodation {
     @Nullable protected Room connectedRoom;
 
 
-    Room(int roomNumber, double pricePerNight, int capacity, RoomView view) {
+    protected Room(int roomNumber, double pricePerNight, int capacity, RoomView view) {
         super("RM" + roomNumber, pricePerNight, capacity);
         this.view=view;
     }

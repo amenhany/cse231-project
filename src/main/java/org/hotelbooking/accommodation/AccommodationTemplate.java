@@ -3,7 +3,6 @@ package org.hotelbooking.accommodation;
 import static org.hotelbooking.accommodation.AccommodationType.*;
 
 public class AccommodationTemplate {
-
     AccommodationType accommodationType;
     RoomView view;
     boolean isBedKingSize;
@@ -14,7 +13,7 @@ public class AccommodationTemplate {
     int minimumNumberOfRooms;
 
 
-    AccommodationTemplate(AccommodationType accommodationType) {
+    public AccommodationTemplate(AccommodationType accommodationType) {
         this.accommodationType = accommodationType;
     }
 

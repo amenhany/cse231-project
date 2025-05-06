@@ -5,7 +5,7 @@ public class Villa extends Accommodation implements ExtraFeeApplicable {
     private boolean hasPool;
 
 
-    Villa(int villaNumber, double pricePerNight, int capacity, boolean hasPool) {
+    public Villa(int villaNumber, double pricePerNight, int capacity, boolean hasPool) {
         super("VM" + villaNumber, pricePerNight, capacity);
         this.hasPool = hasPool;
     }
