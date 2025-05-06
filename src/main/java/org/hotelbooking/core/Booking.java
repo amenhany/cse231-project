@@ -2,10 +2,11 @@ package org.hotelbooking.core;
 
 import org.hotelbooking.accommodation.Accommodation;
 import org.hotelbooking.accommodation.AccommodationTemplate;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 
-public class Booking {
+public class Booking  implements Comparable<Booking>{
     private Accommodation accommodation;
     private AccommodationTemplate desiredAccommodation;
     private BookingStatus status;
@@ -48,5 +49,15 @@ public class Booking {
         for (int i=0;i<guests.length;i++){
             System.out.println("Guest "+ i+1 + ": " + guests[i].toString());
         }
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+       int comp= this.startDate.compareTo(o.startDate);
+      if(comp != 0){        //if start dates not equal
+          return comp;
+      }
+      return this.endDate.compareTo(o.endDate); //if start dates are equal compare end date
+
     }
 }
