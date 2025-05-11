@@ -40,13 +40,22 @@ public class Booking {
     void setAccommodation(Accommodation accommodation) {
         this.accommodation = accommodation;
     }
+    public String toString() {
+        return "Accommodation: " + accommodation + "\n" +
+                "Booking Status: " + status
+                +"\n" +
+                "Board Basis: " + boardBasis + "\n" +
+                "Start Date: " + startDate + "\n" +
+                "End Date: " + endDate;
+
+
+    }
 
     public void displayInfo() {
-        System.out.println("Accommodation: " + accommodation + "\nDesired Accommodation: " + desiredAccommodation + "\nBooking Status: " + status
-                +"\nBoard Basis: " + boardBasis + "\nStart Date: " + startDate + "\nEnd Date: " + endDate);
-
+        System.out.println(this.toString());
         for (int i=0;i<guests.length;i++){
             System.out.println("Guest "+ i+1 + ": " + guests[i].toString());
         }
+
     }
 }
