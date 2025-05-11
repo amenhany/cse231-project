@@ -35,4 +35,9 @@ public class DoubleRoom extends Room implements Connectable,Offerable{
     public double getDiscount() {
         return discount;
     }
+
+    @Override
+    public boolean matches(AccommodationTemplate template) {
+        return (template.getAccommodationType() == AccommodationType.DOUBLE_ROOM) && (template.hasBedKingSize() == isBedKingSize) && (super.matches(template));
+    }
 }
