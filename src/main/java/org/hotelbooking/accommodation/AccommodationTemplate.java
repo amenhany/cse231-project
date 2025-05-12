@@ -17,17 +17,11 @@ public class AccommodationTemplate {
         this.accommodationType = accommodationType;
     }
 
-    public void setAccommodationType(AccommodationType type){
-       accommodationType = type;
-    }
-
     public AccommodationType getAccommodationType() {
         return accommodationType;
     }
 
-    public void setView(RoomView view) {
-        this.view = view;
-    }
+    public void setView(RoomView view) { this.view = view;}
 
     public RoomView getView() {
         return view;
