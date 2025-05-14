@@ -1,8 +1,9 @@
 package org.hotelbooking;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -11,11 +12,10 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Button btOK = new Button("OK"); // create a button
-        Scene scene = new Scene(btOK, 200, 250); // create a scene WITH the button
-        stage.setTitle("MyJavaFX"); // Set the stage title
-        stage.setScene(scene); // Place the scene in the stage
-        stage.show();
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/org/hotelbooking/controllers/home.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Hotel Booking");
+        primaryStage.show();
     }
 }
