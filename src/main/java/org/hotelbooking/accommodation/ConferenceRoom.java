@@ -4,13 +4,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable {
-    private static int numberOfConferenceRooms=0;
     private double hourlyRate;
     private boolean hasProjector;
 
 
-    public ConferenceRoom(double hourlyRate,boolean hasProjector){
-        super("CO"+ ++numberOfConferenceRooms, 0, 100);
+    public ConferenceRoom(int conferenceRoomNumber, double hourlyRate,boolean hasProjector){
+        super("CO"+ String.format("%03d", conferenceRoomNumber), 0, 100);
         this.hourlyRate= hourlyRate;
         this.hasProjector= hasProjector;
     }

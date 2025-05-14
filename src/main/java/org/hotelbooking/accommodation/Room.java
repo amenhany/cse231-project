@@ -20,10 +20,11 @@ public abstract class Room extends Accommodation {
 
 
     protected Room(int roomNumber, double pricePerNight, int capacity, RoomView view) {
-        super("RM" + roomNumber, pricePerNight, capacity);
+        super("RM" + String.format("%03d", roomNumber), pricePerNight, capacity);
         this.view=view;
         snackInventory = new HashMap<>(DEFAULT_ROOM_INVENTORY);
     }
+
 
     @Override
     public boolean matches(AccommodationTemplate template){
@@ -32,6 +33,10 @@ public abstract class Room extends Accommodation {
 
     public double getSnackBill(){
         return snackBill;
+    }
+
+    public void resetSnackBill() {
+        snackBill = 0;
     }
 
     public void refillSnacks() {
