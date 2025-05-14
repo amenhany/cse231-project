@@ -16,6 +16,7 @@ public class Booking  implements Comparable<Booking>{
     private PaymentMethod paymentMethod ;
 
 
+
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
@@ -44,6 +45,7 @@ public class Booking  implements Comparable<Booking>{
     public BookingStatus getStatus(){
         return status ;
     }
+
 
     public Accommodation getAccommodation() {
         return accommodation;

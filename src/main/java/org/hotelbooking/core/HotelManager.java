@@ -23,6 +23,7 @@ public class HotelManager {
         return null;
     }
 
+
     public Receipt checkout(Booking b) {
         if (b.getAccommodation() instanceof Room) {
             ((Room) b.getAccommodation()).refillSnacks();

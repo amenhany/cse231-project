@@ -7,6 +7,7 @@ public class Receipt {
     PaymentMethod paymentMethod;
     double total;
 
+
 Receipt(@NotNull Booking booking, PaymentMethod paymentMethod)
 {
     this.booking=booking;
