@@ -20,7 +20,7 @@ public abstract class Room extends Accommodation {
 
 
     protected Room(int roomNumber, double pricePerNight, int capacity, RoomView view) {
-        super("RM" + roomNumber, pricePerNight, capacity);
+        super("RM" + String.format("%03d", roomNumber), pricePerNight, capacity);
         this.view=view;
         snackInventory = new HashMap<>(DEFAULT_ROOM_INVENTORY);
     }

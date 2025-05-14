@@ -9,8 +9,8 @@ public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable 
     private boolean hasProjector;
 
 
-    public ConferenceRoom(double hourlyRate,boolean hasProjector){
-        super("CO"+ ++numberOfConferenceRooms, 0, 100);
+    public ConferenceRoom(int conferenceRoomNumber, double hourlyRate,boolean hasProjector){
+        super("CO"+ conferenceRoomNumber, 0, 100);
         this.hourlyRate= hourlyRate;
         this.hasProjector= hasProjector;
     }
