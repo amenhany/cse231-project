@@ -51,7 +51,7 @@ public class HotelManagerTest {
         public void populateHotel() {
             hotel = new HotelManager();
             hotel.addAccommodation(new Villa(1, 20, 3, false));
-            hotel.addAccommodation(new Villa(0, 30, 5, true));
+            hotel.addAccommodation(new Villa(0, 30, 5, false));
             hotel.addAccommodation(new DoubleRoom(1, 10, RoomView.GARDEN_VIEW, true));
             hotel.addAccommodation(new SingleRoom(2, 15, RoomView.CITY_VIEW));
             hotel.addAccommodation(new DoubleRoom(0, 5, RoomView.GARDEN_VIEW, false));
@@ -131,6 +131,31 @@ public class HotelManagerTest {
 
             hotel.checkin(booking);
             assertEquals("RM003", booking.getAccommodation().getAccommodationId());
+        }
+
+        @Test
+        @DisplayName("checkin should look for an available accommodation with the least capacity overflow")
+        public void testCheckinForMinCapacity() {
+            AccommodationTemplate template = new AccommodationTemplate(AccommodationType.VILLA);
+            Booking booking = new Booking(template, BoardBasis.FULL_BOARD, new Guest[]{user1, user2, user3},
+                    LocalDateTime.of(2025, 5, 3, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
+            booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
+
+            // VL000 comes before VL001 but VL001 will be chosen as it has a smaller capacity that still fits our guests
+            hotel.checkin(booking);
+            assertEquals("VL001", booking.getAccommodation().getAccommodationId());
+        }
+
+        @Test
+        @DisplayName("checkin should look for an available accommodation that can fit all the guests")
+        public void testCheckinForManyGuests() {
+            AccommodationTemplate template = new AccommodationTemplate(AccommodationType.VILLA);
+            Booking booking = new Booking(template, BoardBasis.FULL_BOARD, new Guest[]{user1, user2, user3, user4},
+                    LocalDateTime.of(2025, 5, 3, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
+            booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
+
+            hotel.checkin(booking);
+            assertEquals("VL001", booking.getAccommodation().getAccommodationId());
         }
 
 
