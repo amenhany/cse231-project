@@ -8,12 +8,11 @@ public class Receipt {
     double total;
 
 
-Receipt(@NotNull Booking booking, PaymentMethod paymentMethod)
-{
-    this.booking=booking;
-    this.paymentMethod=paymentMethod;
-    total = booking.calculateBill();
-}
+    Receipt(@NotNull Booking booking, PaymentMethod paymentMethod) {
+        this.booking=booking;
+        this.paymentMethod=paymentMethod;
+        total = booking.calculateBill();
+    }
 
     @Override
     public String toString() {
@@ -25,6 +24,6 @@ Receipt(@NotNull Booking booking, PaymentMethod paymentMethod)
     }
 
     public void displayInfo() {
-        System.out.println(this.toString());
+        System.out.println(this);
     }
 }

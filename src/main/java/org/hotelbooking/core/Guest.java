@@ -29,7 +29,15 @@ public class Guest {
 
 
     public void setSpouse(@Nullable Guest spouse) {
+        // If there was already a spouse, it will clear that person's spouse (so we do not get a love triangle)
+        if (this.spouse != null) {
+            this.spouse.spouse = null;
+        }
+
+        // Set our instance's spouse to the passed in Guest
         this.spouse = spouse;
+
+        // Set the passed in Guest's spouse to be this instance
         if (spouse != null) {
             spouse.spouse = this;
         }
@@ -44,7 +52,7 @@ public class Guest {
         System.out.println(this);
         if (spouse != null) {
             System.out.println("Spouse Info:");
-            System.out.println(spouse.toString());
+            System.out.println(spouse);
         }
     }
 }

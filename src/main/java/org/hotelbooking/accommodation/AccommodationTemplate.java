@@ -3,7 +3,7 @@ package org.hotelbooking.accommodation;
 import static org.hotelbooking.accommodation.AccommodationType.*;
 
 public class AccommodationTemplate {
-   private AccommodationType accommodationType;
+   private final AccommodationType accommodationType;
    private RoomView view;
    private boolean isBedKingSize;
    private boolean hasJacuzzi;
@@ -21,7 +21,9 @@ public class AccommodationTemplate {
         return accommodationType;
     }
 
-    public void setView(RoomView view) { this.view = view;}
+    public void setView(RoomView view){
+        this.view = view;
+    }
 
     public RoomView getView() {
         return view;

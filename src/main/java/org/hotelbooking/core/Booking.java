@@ -1,7 +1,6 @@
 package org.hotelbooking.core;
 
 import org.hotelbooking.accommodation.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +15,7 @@ public class Booking  implements Comparable<Booking>{
     private final PaymentMethod paymentMethod;
 
 
-    public Booking(AccommodationTemplate desiredAccommodation, BoardBasis boardBasis, Guest[] guests, LocalDateTime startDate, LocalDateTime endDate, PaymentMethod paymentMethod){
+    public Booking(AccommodationTemplate desiredAccommodation, BoardBasis boardBasis, Guest[] guests, LocalDateTime startDate, LocalDateTime endDate, PaymentMethod paymentMethod) {
         this.desiredAccommodation = desiredAccommodation;
         this.boardBasis = boardBasis;
         this.guests = guests;
@@ -27,15 +26,15 @@ public class Booking  implements Comparable<Booking>{
     }
 
     public PaymentMethod getPaymentMethod() {
-        return paymentMethod;
+        return  paymentMethod;
+    }
+
+    public Guest[] getGuests(){
+        return guests;
     }
 
     public LocalDateTime getStartDate() {
         return startDate;
-    }
-
-    public Guest[] getGuests() {
-        return guests;
     }
 
     public LocalDateTime getEndDate() {
@@ -50,6 +49,14 @@ public class Booking  implements Comparable<Booking>{
         return accommodation;
     }
 
+    // This method is package-private (default modifier) as we only want the HotelManager class to be able to set
+    // the accommodation of a package-private booking object, once it's successfully checked-in.
+    void setAccommodation(Accommodation accommodation) {
+        this.accommodation = accommodation;
+    }
+
+    // This is also package-private as AccommodationTemplate is mutable, and we do not want to user to modify the
+    // desiredAccommodation of a booking object once it's created.
     AccommodationTemplate getDesiredAccommodation() {
         return desiredAccommodation;
     }
@@ -60,7 +67,7 @@ public class Booking  implements Comparable<Booking>{
 
     public void cancelBooking() {
         if (status == BookingStatus.REJECTED || status == BookingStatus.CANCELLED) {
-            System.out.println("Booking is cancelled.");
+            System.out.println("Booking is already cancelled");
         }
         else {
             status = BookingStatus.CANCELLED;
@@ -82,11 +89,16 @@ public class Booking  implements Comparable<Booking>{
 
     }
 
-    // This method is p(default modifier) as we only want the HotelManager class to be able to set
-    // the accommodation of a Boackage-private oking object, once it's successfully checked-in.
-    void setAccommodation(Accommodation accommodation) {
-        this.accommodation = accommodation;
+
+    @Override
+    public int compareTo(Booking o) {
+        int comp = this.startDate.compareTo(o.startDate);
+        if(comp != 0){        //if start dates not equal
+            return comp;
+        }
+        return this.endDate.compareTo(o.endDate); //if start dates are equal compare end date
     }
+
     public String toString() {
         return "Accommodation: " + accommodation + "\n" +
                 "Booking Status: " + status
@@ -94,25 +106,13 @@ public class Booking  implements Comparable<Booking>{
                 "Board Basis: " + boardBasis + "\n" +
                 "Start Date: " + startDate + "\n" +
                 "End Date: " + endDate;
-
-
     }
 
     public void displayInfo() {
-        System.out.println(this.toString());
-        for (int i=0;i<guests.length;i++){
+        System.out.println(this);
+
+        for (int i = 0; i < guests.length; i++){
             System.out.println("Guest "+ i+1 + ": " + guests[i].toString());
         }
-
-    }
-
-    @Override
-    public int compareTo(Booking o) {
-       int comp= this.startDate.compareTo(o.startDate);
-      if(comp != 0){        //if start dates not equal
-          return comp;
-      }
-      return this.endDate.compareTo(o.endDate); //if start dates are equal compare end date
-
     }
 }
