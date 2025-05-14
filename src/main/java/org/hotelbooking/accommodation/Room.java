@@ -27,7 +27,7 @@ public abstract class Room extends Accommodation {
 
     @Override
     public boolean matches(AccommodationTemplate template){
-        return false;
+      return template.getView() == view;
     }
 
     public double getSnackBill(){

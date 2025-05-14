@@ -3,23 +3,25 @@ package org.hotelbooking.accommodation;
 import static org.hotelbooking.accommodation.AccommodationType.*;
 
 public class AccommodationTemplate {
-    AccommodationType accommodationType;
-    RoomView view;
-    boolean isBedKingSize;
-    boolean hasJacuzzi;
-    boolean hasEnsuiteBathroom;
-    boolean hasProjector;
-    boolean hasPool;
-    int minimumNumberOfRooms;
+   private AccommodationType accommodationType;
+   private RoomView view;
+   private boolean isBedKingSize;
+   private boolean hasJacuzzi;
+   private boolean hasEnsuiteBathroom;
+   private boolean hasProjector;
+   private boolean hasPool;
+   private int minimumNumberOfRooms;
 
 
     public AccommodationTemplate(AccommodationType accommodationType) {
         this.accommodationType = accommodationType;
     }
 
-    public void setView(RoomView view) {
-        this.view = view;
+    public AccommodationType getAccommodationType() {
+        return accommodationType;
     }
+
+    public void setView(RoomView view) { this.view = view;}
 
     public RoomView getView() {
         return view;
@@ -42,7 +44,7 @@ public class AccommodationTemplate {
 
     public void setHasEnsuiteBathroom(boolean EnsuiteBathroom) {
 
-            if (accommodationType == SUITE) {
+                if (accommodationType == SUITE) {
                 hasEnsuiteBathroom = EnsuiteBathroom;
             } else {
                 System.out.println("Accommodation type must be Suite.");

@@ -19,4 +19,10 @@ public class SingleRoom extends Room implements Connectable {
     public @Nullable Room getConnectedRoom() {
         return null;
     }
+
+
+    @Override
+    public boolean matches(AccommodationTemplate template) {
+        return (template.getAccommodationType() == AccommodationType.SINGLE_ROOM) && (super.matches(template));
+    }
 }

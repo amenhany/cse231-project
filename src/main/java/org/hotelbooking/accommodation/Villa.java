@@ -11,7 +11,7 @@ public class Villa extends Accommodation implements ExtraFeeApplicable {
     }
 
     public  boolean matches(AccommodationTemplate template){
-        return false;
+     return (template.getAccommodationType() == AccommodationType.VILLA) && (template.hasPool() == hasPool);
     }
 
     public boolean hasPool(){
@@ -20,7 +20,8 @@ public class Villa extends Accommodation implements ExtraFeeApplicable {
 
     @Override
     public double getExtraFees() {
-        return 0;
+        if(hasPool)  return 100.0;
+        return 0.0;
     }
 
     @Override
