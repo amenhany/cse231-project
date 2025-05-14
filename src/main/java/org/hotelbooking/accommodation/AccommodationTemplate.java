@@ -27,6 +27,8 @@ public class AccommodationTemplate {
         return view;
     }
 
+
+
     public void setIsBedKingSize(boolean bedKingSize) {
         if (accommodationType == DOUBLE_ROOM) {
             isBedKingSize = bedKingSize;
@@ -34,6 +36,7 @@ public class AccommodationTemplate {
             System.out.println("Accommodation type must be Double Room.");
         }
     }
+
 
     public boolean hasBedKingSize() {
         return isBedKingSize;

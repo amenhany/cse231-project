@@ -7,18 +7,44 @@ import java.time.LocalDateTime;
 
 public class Booking  implements Comparable<Booking>{
     private Accommodation accommodation;
-    private AccommodationTemplate desiredAccommodation;
+    private final AccommodationTemplate desiredAccommodation;
     private BookingStatus status;
-    private BoardBasis boardBasis;
-    private Guest[] guests;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private final BoardBasis boardBasis;
+    private final Guest[] guests;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
 
+
+    public Booking(AccommodationTemplate desiredAccommodation,BoardBasis boardBasis , Guest[] guests,LocalDateTime startDate,LocalDateTime endDate){
+        this.desiredAccommodation = desiredAccommodation;
+        this.boardBasis = boardBasis;
+        this.guests = guests;
+        this.startDate=startDate;
+        this.endDate = endDate;
+        status = BookingStatus.PENDING_PAYMENT;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public Guest[] getGuests() {
+        return guests;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
 
     public BookingStatus getStatus(){
         return status ;
     }
-    public AccommodationTemplate getDesiredAccommodation() {
+
+    public Accommodation getAccommodation() {
+        return accommodation;
+    }
+
+    AccommodationTemplate getDesiredAccommodation() {
         return desiredAccommodation;
     }
 
@@ -46,8 +72,8 @@ public class Booking  implements Comparable<Booking>{
 
     }
 
-    // This method is package-private (default modifier) as we only want the HotelManager class to be able to set
-    // the accommodation of a Booking object, once it's successfully checked-in.
+    // This method is p(default modifier) as we only want the HotelManager class to be able to set
+    // the accommodation of a Boackage-private oking object, once it's successfully checked-in.
     void setAccommodation(Accommodation accommodation) {
         this.accommodation = accommodation;
     }
