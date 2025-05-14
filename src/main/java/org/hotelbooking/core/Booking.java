@@ -13,9 +13,14 @@ public class Booking  implements Comparable<Booking>{
     private final Guest[] guests;
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
+    private PaymentMethod paymentMethod ;
 
 
-    public Booking(AccommodationTemplate desiredAccommodation,BoardBasis boardBasis , Guest[] guests,LocalDateTime startDate,LocalDateTime endDate){
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public Booking(AccommodationTemplate desiredAccommodation, BoardBasis boardBasis , Guest[] guests, LocalDateTime startDate, LocalDateTime endDate){
         this.desiredAccommodation = desiredAccommodation;
         this.boardBasis = boardBasis;
         this.guests = guests;
