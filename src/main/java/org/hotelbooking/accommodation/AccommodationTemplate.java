@@ -3,7 +3,7 @@ package org.hotelbooking.accommodation;
 import static org.hotelbooking.accommodation.AccommodationType.*;
 
 public class AccommodationTemplate {
-   private AccommodationType accommodationType;
+   private final AccommodationType accommodationType;
    private RoomView view;
    private boolean isBedKingSize;
    private boolean hasJacuzzi;
@@ -34,7 +34,13 @@ public class AccommodationTemplate {
 >>>>>>> ed5ed8c (matches/calculateBill/getExtraFees methods)
     }
 
-    public void setView(RoomView view) { this.view = view;}
+    public void setView(RoomView view){
+        if (accommodationType == SINGLE_ROOM || accommodationType == DOUBLE_ROOM || accommodationType == SUITE) {
+            this.view = view;
+        } else {
+            System.out.println("Accommodation type must be Double Room.");
+        }
+    }
 
     public RoomView getView() {
         return view;

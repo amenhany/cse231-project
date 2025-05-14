@@ -12,10 +12,16 @@ public abstract class Accommodation implements Comparable<Accommodation> {
     protected double discount;
 
 
+
     protected Accommodation(String accommodationId, double pricePerNight, int capacity) {
         this.accommodationId = accommodationId;
         this.pricePerNight = pricePerNight;
         this.capacity = capacity;
+
+    }
+
+    public  int getCapacity() {
+        return capacity;
     }
 
     public int getCapacity() {
@@ -37,6 +43,7 @@ public abstract class Accommodation implements Comparable<Accommodation> {
     }
 
     public abstract boolean matches(AccommodationTemplate template);
+
     public abstract void displayInfo();
 
     @Override
