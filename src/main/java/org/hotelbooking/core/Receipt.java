@@ -14,6 +14,10 @@ public class Receipt {
         total = booking.calculateBill();
     }
 
+    public double getTotal() {
+        return total;
+    }
+
     @Override
     public String toString() {
         return "Receipt {\n" +

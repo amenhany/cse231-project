@@ -5,7 +5,7 @@ public class Chalet extends Accommodation implements Offerable {
 
 
     public Chalet(int chaletNumber, double pricePerNight, int capacity, int numberOfRooms){
-        super("CH" + chaletNumber, pricePerNight, capacity);
+        super("CH" + String.format("%03d", chaletNumber), pricePerNight, capacity);
         this.numberOfRooms = numberOfRooms;
     }
 

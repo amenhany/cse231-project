@@ -22,7 +22,11 @@ public class AccommodationTemplate {
     }
 
     public void setView(RoomView view){
-        this.view = view;
+        if (accommodationType == SINGLE_ROOM || accommodationType == DOUBLE_ROOM || accommodationType == SUITE) {
+            this.view = view;
+        } else {
+            System.out.println("Accommodation type must be Double Room.");
+        }
     }
 
     public RoomView getView() {

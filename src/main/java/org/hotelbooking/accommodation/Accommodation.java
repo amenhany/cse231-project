@@ -24,8 +24,6 @@ public abstract class Accommodation implements Comparable<Accommodation> {
         return capacity;
     }
 
-
-
     public double getPricePerNight(){
         return pricePerNight;
     }

@@ -35,6 +35,10 @@ public abstract class Room extends Accommodation {
         return snackBill;
     }
 
+    public void resetSnackBill() {
+        snackBill = 0;
+    }
+
     public void refillSnacks() {
         snackInventory = new HashMap<>(DEFAULT_ROOM_INVENTORY);
     }
