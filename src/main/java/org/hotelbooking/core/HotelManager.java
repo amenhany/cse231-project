@@ -2,6 +2,7 @@ package org.hotelbooking.core;
 
 import org.hotelbooking.accommodation.Accommodation;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,19 +32,47 @@ public class HotelManager {
         accommodations.add(accommodation);
     }
 
-    public Accommodation checkin(@NotNull Booking booking) {
+    public @Nullable  Accommodation checkin(@NotNull Booking booking) {
+
         if (booking.getEndDate().isBefore(booking.getStartDate())){
+            booking.setStatus(BookingStatus.REJECTED);
             throw new IllegalArgumentException("End date cannot be before Start Date");
+
         }
         if(booking.getStatus() != BookingStatus.CONFIRMED_PAYMENT){
-            System.out.println("Payment is not confirmed");
+            System.out.println("Payment is not confirmed" );
+            booking.setStatus(BookingStatus.REJECTED);
         }
-        if (booking.getAccommodation().getCapacity()){
+       for (Accommodation accommodation:accommodations){
+           if(accommodation.matches(booking.getDesiredAccommodation())
+                   && ( booking.getGuests().length <= accommodation.getCapacity() ) ){
 
-        }
+               boolean isAvailable=true;
+               for(Booking booked: bookings ){
+                   if(booked.getAccommodation()==accommodation){
+                        if((booking.getStartDate().isAfter(booked.getStartDate()) && booking.getStartDate().isBefore(booked.getEndDate()))
+                        || (booking.getEndDate().isAfter(booked.getStartDate()) && booking.getEndDate().isBefore(booked.getEndDate()))){
+                            isAvailable=false;
+                            break;
+                       }
+
+                   }
+               }
+               if(isAvailable){
+                   booking.setStatus(BookingStatus.BOOKED);
+                   booking.setAccommodation(accommodation);
+                   bookings.add(booking);
+                   return accommodation;
+               }
+           }
+       }
+        booking.setStatus(BookingStatus.REJECTED);
+        System.out.println("Accommodation is not available");
+
+        return null;
     }
     public Receipt checkout(@NotNull Booking booking) {
-
+    return null;
     }
 }
 
