@@ -25,6 +25,7 @@ public abstract class Room extends Accommodation {
         snackInventory = new HashMap<>(DEFAULT_ROOM_INVENTORY);
     }
 
+
     @Override
     public boolean matches(AccommodationTemplate template){
       return template.getView() == view;

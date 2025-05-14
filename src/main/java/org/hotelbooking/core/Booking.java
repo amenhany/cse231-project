@@ -13,22 +13,22 @@ public class Booking  implements Comparable<Booking>{
     private final Guest[] guests;
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
+    private final PaymentMethod paymentMethod;
 
 
-
-    public Booking(AccommodationTemplate desiredAccommodation,BoardBasis boardBasis , Guest[] guests,LocalDateTime startDate,LocalDateTime endDate){
+    public Booking(AccommodationTemplate desiredAccommodation, BoardBasis boardBasis, Guest[] guests, LocalDateTime startDate, LocalDateTime endDate, PaymentMethod paymentMethod){
         this.desiredAccommodation = desiredAccommodation;
         this.boardBasis = boardBasis;
         this.guests = guests;
         this.startDate=startDate;
         this.endDate = endDate;
+        this.paymentMethod = paymentMethod;
         status = BookingStatus.PENDING_PAYMENT;
-
     }
 
-
-
-
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
 
     public LocalDateTime getStartDate() {
         return startDate;
@@ -36,11 +36,7 @@ public class Booking  implements Comparable<Booking>{
 
     public Guest[] getGuests() {
         return guests;
-
     }
-
-
-
 
     public LocalDateTime getEndDate() {
         return endDate;
@@ -57,6 +53,7 @@ public class Booking  implements Comparable<Booking>{
     AccommodationTemplate getDesiredAccommodation() {
         return desiredAccommodation;
     }
+
     public void setStatus(BookingStatus status){
         this.status=status;
     }

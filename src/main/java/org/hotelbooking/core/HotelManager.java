@@ -1,6 +1,7 @@
 package org.hotelbooking.core;
 
 import org.hotelbooking.accommodation.Accommodation;
+import org.hotelbooking.accommodation.Room;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -43,36 +44,42 @@ public class HotelManager {
             System.out.println("Payment is not confirmed" );
             booking.setStatus(BookingStatus.REJECTED);
         }
-       for (Accommodation accommodation:accommodations){
-           if(accommodation.matches(booking.getDesiredAccommodation())
-                   && ( booking.getGuests().length <= accommodation.getCapacity() ) ){
+        for (Accommodation accommodation:accommodations){
+            if(accommodation.matches(booking.getDesiredAccommodation())
+                    && ( booking.getGuests().length <= accommodation.getCapacity() ) ){
 
-               boolean isAvailable=true;
-               for(Booking booked: bookings ){
-                   if(booked.getAccommodation()==accommodation){
+                boolean isAvailable=true;
+                for(Booking booked: bookings ){
+                    if(booked.getAccommodation()==accommodation){
                         if((booking.getStartDate().isAfter(booked.getStartDate()) && booking.getStartDate().isBefore(booked.getEndDate()))
-                        || (booking.getEndDate().isAfter(booked.getStartDate()) && booking.getEndDate().isBefore(booked.getEndDate()))){
+                                || (booking.getEndDate().isAfter(booked.getStartDate()) && booking.getEndDate().isBefore(booked.getEndDate()))){
                             isAvailable=false;
                             break;
-                       }
+                        }
 
-                   }
-               }
-               if(isAvailable){
-                   booking.setStatus(BookingStatus.BOOKED);
-                   booking.setAccommodation(accommodation);
-                   bookings.add(booking);
-                   return accommodation;
-               }
-           }
-       }
+                    }
+                }
+                if(isAvailable){
+                    booking.setStatus(BookingStatus.BOOKED);
+                    booking.setAccommodation(accommodation);
+                    bookings.add(booking);
+                    return accommodation;
+                }
+            }
+        }
         booking.setStatus(BookingStatus.REJECTED);
         System.out.println("Accommodation is not available");
 
         return null;
     }
-    public Receipt checkout(@NotNull Booking booking) {
-    return null;
+
+    public Receipt checkout(Booking b) {
+        if (b.getAccommodation() instanceof Room) {
+            ((Room) b.getAccommodation()).refillSnacks();
+        }
+        Receipt r = new Receipt(b, b.getPaymentMethod());
+        bookings.remove(b);
+        return r;
     }
 }
 
