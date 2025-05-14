@@ -23,6 +23,11 @@ public class Guest {
         return spouse ;
     }
 
+    public char getGender() {
+        return gender;
+    }
+
+
     public void setSpouse(@Nullable Guest spouse) {
         this.spouse = spouse;
         if (spouse != null) {

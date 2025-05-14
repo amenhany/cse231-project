@@ -18,6 +18,11 @@ public abstract class Accommodation implements Comparable<Accommodation> {
         this.capacity = capacity;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+
     public double getPricePerNight(){
         return pricePerNight;
     }
@@ -36,6 +41,6 @@ public abstract class Accommodation implements Comparable<Accommodation> {
 
     @Override
     public int compareTo(@NotNull Accommodation o){
-        return 0;
+        return accommodationId.compareTo(o.accommodationId);
     }
 }
