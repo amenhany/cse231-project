@@ -30,12 +30,13 @@ public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable 
     }
 
     public  boolean matches(AccommodationTemplate template){
-        return false;
+        return (template.getAccommodationType() == AccommodationType.CONFERENCE_ROOM) && (template.hasProjector() == hasProjector) ;
     }
 
     @Override
     public double getExtraFees() {
-        return 0;
+        if(hasProjector) return 40.0;
+        return 0.0;
     }
 
     @Override

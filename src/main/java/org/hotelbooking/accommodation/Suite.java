@@ -34,7 +34,15 @@ public class Suite extends Room implements Connectable, ExtraFeeApplicable, Offe
 
     @Override
     public double getExtraFees() {
-        return 0;
+        double extraFees =0.0;
+        if(hasJacuzzi) extraFees += 80.0;
+        if(hasEnsuiteBathroom) extraFees += 50.0;
+        return extraFees;
+    }
+
+    @Override
+    public boolean matches(AccommodationTemplate template) {
+        return (template.getAccommodationType() == AccommodationType.SUITE) && (template.hasEnsuiteBathroom() == hasEnsuiteBathroom) && (template.hasJacuzzi() == hasJacuzzi) && (super.matches(template));
     }
 
     @Override

@@ -1,11 +1,11 @@
 package org.hotelbooking.core;
 
-import org.hotelbooking.accommodation.Accommodation;
-import org.hotelbooking.accommodation.AccommodationTemplate;
+import org.hotelbooking.accommodation.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 
-public class Booking {
+public class Booking  implements Comparable<Booking>{
     private Accommodation accommodation;
     private AccommodationTemplate desiredAccommodation;
     private BookingStatus status;
@@ -32,7 +32,18 @@ public class Booking {
     }
 
     public double calculateBill(){
-        return 0 ;
+        double finalBill = accommodation.calculatePrice(startDate, endDate);
+        if(accommodation instanceof ExtraFeeApplicable){
+          finalBill += ((ExtraFeeApplicable) accommodation).getExtraFees();
+        }
+        if(accommodation instanceof Room){
+          finalBill += ((Room) accommodation).getSnackBill();
+        }
+        if(accommodation instanceof Offerable){
+          finalBill -= ((Offerable) accommodation).getDiscount();
+        }
+        return finalBill;
+
     }
 
     // This method is package-private (default modifier) as we only want the HotelManager class to be able to set
@@ -56,6 +67,16 @@ public class Booking {
         for (int i=0;i<guests.length;i++){
             System.out.println("Guest "+ i+1 + ": " + guests[i].toString());
         }
+
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+       int comp= this.startDate.compareTo(o.startDate);
+      if(comp != 0){        //if start dates not equal
+          return comp;
+      }
+      return this.endDate.compareTo(o.endDate); //if start dates are equal compare end date
 
     }
 }
