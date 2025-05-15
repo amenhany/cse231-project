@@ -9,8 +9,7 @@ public class Guest {
     private String email;
     private LocalDate birthdate;
 
-    // For testing
-    Guest(String name) {
+    public Guest(String name) {
         this.name = name;
     }
 

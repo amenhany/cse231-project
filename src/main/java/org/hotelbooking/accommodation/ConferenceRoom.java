@@ -28,7 +28,7 @@ public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable 
         return hours*hourlyRate;
     }
 
-    public  boolean matches(AccommodationTemplate template){
+    public boolean matches(AccommodationTemplate template){
         return (template.getAccommodationType() == AccommodationType.CONFERENCE_ROOM) && (template.hasProjector() == hasProjector) ;
     }
 

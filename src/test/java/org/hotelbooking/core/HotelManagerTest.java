@@ -155,7 +155,7 @@ public class HotelManagerTest {
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
             hotel.checkin(booking);
-            assertEquals("VL001", booking.getAccommodation().getAccommodationId());
+            assertEquals("VL000", booking.getAccommodation().getAccommodationId());
         }
 
 

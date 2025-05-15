@@ -10,11 +10,7 @@ public class Chalet extends Accommodation implements Offerable {
     }
 
     public  boolean matches(AccommodationTemplate template){
-<<<<<<< HEAD
         return (template.getAccommodationType() == AccommodationType.CHALET) && (template.getMinimumNumberOfRooms() <= numberOfRooms);
-=======
-        return (template.getAccommodationType() == AccommodationType.CHALET) && (template.getMinimumNumberOfRooms() == numberOfRooms);
->>>>>>> ed5ed8c (matches/calculateBill/getExtraFees methods)
     }
 
     @Override

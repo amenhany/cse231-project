@@ -17,21 +17,8 @@ public class AccommodationTemplate {
         this.accommodationType = accommodationType;
     }
 
-<<<<<<< HEAD
     public AccommodationType getAccommodationType() {
         return accommodationType;
-=======
-    public void setAccommodationType(AccommodationType type){
-       accommodationType = type;
-    }
-
-    public AccommodationType getAccommodationType() {
-        return accommodationType;
-    }
-
-    public void setView(RoomView view) {
-        this.view = view;
->>>>>>> ed5ed8c (matches/calculateBill/getExtraFees methods)
     }
 
     public void setView(RoomView view){
@@ -45,7 +32,6 @@ public class AccommodationTemplate {
     public RoomView getView() {
         return view;
     }
-
 
 
     public void setIsBedKingSize(boolean bedKingSize) {
