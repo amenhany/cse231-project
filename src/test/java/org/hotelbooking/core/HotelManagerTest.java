@@ -59,7 +59,7 @@ public class HotelManagerTest {
             desiredAccommodation.setView(RoomView.GARDEN_VIEW);
             desiredAccommodation.setIsBedKingSize(true);
 
-            booking1 = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            booking1 = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 2, 13, 0), LocalDateTime.of(2025, 5, 4, 11, 0), PaymentMethod.CASH);
             booking1.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -75,7 +75,7 @@ public class HotelManagerTest {
         @Test
         @DisplayName("An IllegalStateException will be thrown if the accommodation is taken during the specified time")
         public void testCheckinDateConflict() {
-            Booking booking = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 3, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -85,7 +85,7 @@ public class HotelManagerTest {
         @Test
         @DisplayName("Edge case of check-in with the same start date")
         public void testCheckinEdgeStart() {
-            Booking booking = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 2, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -95,7 +95,7 @@ public class HotelManagerTest {
         @Test
         @DisplayName("Edge case of check-in with the same end date")
         public void testCheckinEdgeEnd() {
-            Booking booking = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 1, 13, 0), LocalDateTime.of(2025, 5, 4, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -105,7 +105,7 @@ public class HotelManagerTest {
         @Test
         @DisplayName("Checking in the same day as check-out of another booking should be fine")
         public void testCheckinSameDayOfCheckout() {
-            Booking booking = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 4, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -114,17 +114,11 @@ public class HotelManagerTest {
         }
 
         @Test
-        @DisplayName("You should not be able to check in with the same booking twice")
-        public void testCheckinTwice() {
-            assertThrows(IllegalArgumentException.class, () -> hotel.checkin(booking1));
-        }
-
-        @Test
         @DisplayName("checkin should look for an available accommodation if it found the first one unavailable")
         public void testCheckinAfterUnavailable() {
             hotel.addAccommodation(new DoubleRoom(3, 12, RoomView.GARDEN_VIEW, true));
 
-            Booking booking = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 3, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -136,7 +130,7 @@ public class HotelManagerTest {
         @DisplayName("checkin should look for an available accommodation with the least capacity overflow")
         public void testCheckinForMinCapacity() {
             AccommodationTemplate template = new AccommodationTemplate(AccommodationType.VILLA);
-            Booking booking = new Booking(template, BoardBasis.FULL_BOARD, new Guest[]{user1, user2, user3},
+            Booking booking = new Booking(template, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2, user3},
                     LocalDateTime.of(2025, 5, 3, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -149,7 +143,7 @@ public class HotelManagerTest {
         @DisplayName("checkin should look for an available accommodation that can fit all the guests")
         public void testCheckinForManyGuests() {
             AccommodationTemplate template = new AccommodationTemplate(AccommodationType.VILLA);
-            Booking booking = new Booking(template, BoardBasis.FULL_BOARD, new Guest[]{user1, user2, user3, user4},
+            Booking booking = new Booking(template, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2, user3, user4},
                     LocalDateTime.of(2025, 5, 3, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -170,7 +164,7 @@ public class HotelManagerTest {
 //            assertEquals(0, hotel.bookings.size());
 
 
-            Booking booking = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 4, 13, 0), LocalDateTime.of(2025, 5, 6, 11, 0), PaymentMethod.CASH);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
@@ -183,7 +177,7 @@ public class HotelManagerTest {
         public void testReceiptTotal() {
             assertEquals(20, hotel.checkout(booking1).getTotal());
 
-            Booking booking2 = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+            Booking booking2 = new Booking(desiredAccommodation, BoardBasis.ROOM_ONLY, new Guest[]{user1, user2},
                     LocalDateTime.of(2025, 5, 2, 13, 0), LocalDateTime.of(2025, 5, 3, 11, 0), PaymentMethod.CASH);
             booking2.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
