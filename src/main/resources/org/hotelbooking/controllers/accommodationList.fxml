@@ -39,7 +39,7 @@
                   </HBox>
                   <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="192.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#newAccommodationScene" prefHeight="47.0" prefWidth="144.0" text="+ Add Accommodation">
+                        <Button fx:id="addAccommodationButton" visible="false" mnemonicParsing="false" onAction="#newAccommodationScene" prefHeight="47.0" prefWidth="144.0" text="+ Add Accommodation">
                            <VBox.margin>
                               <Insets right="30.0" />
                            </VBox.margin>

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.hotelbooking.accommodation.Accommodation;
@@ -22,11 +23,15 @@ public class AccommodationListController implements Initializable {
     AnchorPane parentAnchorPane;
     @FXML
     VBox list;
+    @FXML
+    Button addAccommodationButton;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Set accommodationSet = new HashSet<>();
+
+        if (HomeController.getEmail().equalsIgnoreCase("admin@hotelbooking.org")) addAccommodationButton.setVisible(true);
 
         if (BookingListController.getMyBookings() != null) {
             if (!BookingListController.getMyBookings().isEmpty()) list.getChildren().removeAll(list.getChildren().get(0));

@@ -75,7 +75,7 @@ public class Booking  implements Comparable<Booking>{
     }
 
     public double calculateBill(){
-        double finalBill = accommodation.calculatePrice(startDate, endDate);
+        double finalBill = accommodation.calculatePrice(startDate, endDate) + boardBasis.getPrice();
         if(accommodation instanceof ExtraFeeApplicable){
           finalBill += ((ExtraFeeApplicable) accommodation).getExtraFees();
         }
