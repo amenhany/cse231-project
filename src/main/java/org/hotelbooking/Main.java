@@ -5,12 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.hotelbooking.core.HotelManager;
+import org.hotelbooking.core.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
     public static HotelManager mainHotel = new HotelManager();
+    public static List<Booking> myBookings = new ArrayList<>();
 
     public static void main(String[] args) {
         Application.launch(args);

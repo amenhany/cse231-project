@@ -38,13 +38,13 @@
                      <children>
                               <Label text="Accommodation Type" />
                               <ChoiceBox fx:id="accommodationTypeChoiceBox" prefHeight="25.0" prefWidth="176.0" />
-                              <Label text="Start Date">
+                              <Label fx:id="startDateLabel" text="Start Date">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
                               <DatePicker fx:id="startDateField" prefHeight="23.0" prefWidth="176.0" />
-                              <Label text="End Date">
+                              <Label fx:id="endDateLabel" text="End Date">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -114,7 +114,29 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </Label>
-                        <ChoiceBox fx:id="roomViewChoiceBox" prefHeight="25.0" prefWidth="155.0" />
+                        <ChoiceBox fx:id="roomViewChoiceBox" prefHeight="23.0" prefWidth="179.0" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="168.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="startHourLabel" text="From" />
+                                    <TextField fx:id="startHourField" prefHeight="23.0" prefWidth="42.0" promptText="11:00" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="endHourLabel" text="Till" />
+                                    <TextField fx:id="endHourField" prefHeight="23.0" prefWidth="42.0" promptText="13:00" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
                         <VBox prefHeight="131.0" prefWidth="132.0" VBox.vgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="44.0" prefWidth="132.0" VBox.vgrow="ALWAYS">
                            <children>

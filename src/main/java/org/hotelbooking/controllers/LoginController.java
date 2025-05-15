@@ -37,7 +37,7 @@ public class LoginController {
             root = loader.load();
 
             HomeController homeController = loader.getController();
-            homeController.displayName(usernameField.getText());
+            homeController.displayName(usernameField.getText(), emailField.getText());
             homeController.newBookingScene();
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

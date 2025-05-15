@@ -11,11 +11,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.hotelbooking.core.HotelManager;
 
 import java.io.IOException;
 
 public class HomeController {
+
+    String usernameString;
+    String emailString;
 
     @FXML
     Text username;
@@ -34,8 +36,10 @@ public class HomeController {
     @FXML
     Button accommodationsButton;
 
-    public void displayName(String username) {
+    public void displayName(String username, String email) {
         this.username.setText(username);
+        this.emailString = email;
+        this.usernameString = username;
     }
 
     public void handleLogout(ActionEvent event) {
@@ -80,10 +84,32 @@ public class HomeController {
     }
 
     public void bookingsScene() {
+        try {
+            AnchorPane content = FXMLLoader.load(getClass().getResource("/org/hotelbooking/controllers/bookingList.fxml"));
 
+            AnchorPane.setTopAnchor(content, 0.0);
+            AnchorPane.setBottomAnchor(content, 0.0);
+            AnchorPane.setLeftAnchor(content, 0.0);
+            AnchorPane.setRightAnchor(content, 0.0);
+
+            mainPane.getChildren().setAll(content);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void accommodationsScene() {
+        try {
+            AnchorPane content = FXMLLoader.load(getClass().getResource("/org/hotelbooking/controllers/accommodationList.fxml"));
 
+            AnchorPane.setTopAnchor(content, 0.0);
+            AnchorPane.setBottomAnchor(content, 0.0);
+            AnchorPane.setLeftAnchor(content, 0.0);
+            AnchorPane.setRightAnchor(content, 0.0);
+
+            mainPane.getChildren().setAll(content);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }

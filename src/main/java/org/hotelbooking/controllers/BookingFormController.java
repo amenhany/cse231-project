@@ -1,12 +1,15 @@
 package org.hotelbooking.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import org.hotelbooking.Main;
 import org.hotelbooking.accommodation.*;
 import org.hotelbooking.core.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -27,6 +30,8 @@ public class BookingFormController implements Initializable {
 
     @FXML
     ToggleGroup paymentMethodGroup;
+    @FXML
+    AnchorPane parentAnchorPane;
 
     @FXML
     ChoiceBox<AccommodationType> accommodationTypeChoiceBox;
@@ -35,7 +40,11 @@ public class BookingFormController implements Initializable {
     @FXML
     DatePicker startDateField;
     @FXML
+    Label startDateLabel;
+    @FXML
     DatePicker endDateField;
+    @FXML
+    Label endDateLabel;
     @FXML
     RadioButton visaRadioButton;
     @FXML
@@ -56,6 +65,14 @@ public class BookingFormController implements Initializable {
     ChoiceBox<RoomView> roomViewChoiceBox;
     @FXML
     Label roomViewLabel;
+    @FXML
+    TextField startHourField;
+    @FXML
+    Label startHourLabel;
+    @FXML
+    TextField endHourField;
+    @FXML
+    Label endHourLabel;
 
     @FXML
     Label errorLabel;
@@ -72,6 +89,14 @@ public class BookingFormController implements Initializable {
         numberOfRoomsLabel.setVisible(false);
         numberOfRoomsField.setVisible(false);
 
+        startHourField.setVisible(false);
+        startHourLabel.setVisible(false);
+        endHourField.setVisible(false);
+        endHourLabel.setVisible(false);
+        startDateLabel.setText("Start Date");
+        endDateField.setVisible(true);
+        endDateLabel.setVisible(true);
+
         accommodationTypeChoiceBox.setOnAction(event -> {
             numberOfRoomsLabel.setVisible(false);
             numberOfRoomsField.setVisible(false);
@@ -79,6 +104,14 @@ public class BookingFormController implements Initializable {
             secondOption.setVisible(false);
             roomViewChoiceBox.setVisible(false);
             roomViewLabel.setVisible(false);
+
+            startHourField.setVisible(false);
+            startHourLabel.setVisible(false);
+            endHourField.setVisible(false);
+            endHourLabel.setVisible(false);
+            startDateLabel.setText("Start Date");
+            endDateField.setVisible(true);
+            endDateLabel.setVisible(true);
 
             if(accommodationTypeChoiceBox.getValue() == AccommodationType.CHALET) {
                 numberOfRoomsField.setVisible(true);
@@ -98,6 +131,19 @@ public class BookingFormController implements Initializable {
                 secondOption.setText("Ensuite Bathroom");
                 secondOption.setVisible(true);
             }
+            else if(accommodationTypeChoiceBox.getValue() == AccommodationType.CONFERENCE_ROOM) {
+                firstOption.setText("Projector");
+                firstOption.setVisible(true);
+
+                startHourField.setVisible(true);
+                startHourLabel.setVisible(true);
+                endHourField.setVisible(true);
+                endHourLabel.setVisible(true);
+                startDateLabel.setText("Date");
+                endDateField.setVisible(false);
+                endDateLabel.setVisible(false);
+            }
+
             if(accommodationTypeChoiceBox.getValue() == AccommodationType.SINGLE_ROOM || accommodationTypeChoiceBox.getValue() == AccommodationType.DOUBLE_ROOM
             || accommodationTypeChoiceBox.getValue() == AccommodationType.SUITE) {
                 roomViewChoiceBox.setVisible(true);
@@ -138,21 +184,59 @@ public class BookingFormController implements Initializable {
         // Check start date is after now
         if ((startDateField.getValue() == null) || (startDateField.getValue().atTime(11, 0).isBefore(LocalDateTime.now()))) {
             errorLabel.setText("Please enter a valid starting date");
-            errorFlag = true;
+            errorLabel.setVisible(true);
             startDateField.getStyleClass().add("error-field");
+            return;
         } else {
             startDateField.getStyleClass().removeAll("error-field");
             startDate = startDateField.getValue().atTime(13, 0);
         }
 
-        // Check end date is after start date
-        if ((endDateField.getValue() == null) || (endDateField.getValue().atTime(11, 0).isBefore(startDate != null ? startDate : LocalDateTime.now()))) {
-            errorLabel.setText("Please enter a valid end date");
-            errorFlag = true;
-            endDateField.getStyleClass().add("error-field");
-        } else {
-            endDateField.getStyleClass().removeAll("error-field");
-            endDate = endDateField.getValue().atTime(13, 0);
+        if (accommodationTypeChoiceBox.getValue() != AccommodationType.CONFERENCE_ROOM) {
+
+            // Check end date is after start date
+            if ((endDateField.getValue() == null) || (endDateField.getValue().atTime(11, 0).isBefore(startDate != null ? startDate : LocalDateTime.now()))) {
+                errorLabel.setText("Please enter a valid end date");
+                errorFlag = true;
+                endDateField.getStyleClass().add("error-field");
+            } else {
+                endDateField.getStyleClass().removeAll("error-field");
+                endDate = endDateField.getValue().atTime(13, 0);
+            }
+        }
+        else {
+            // Check start time is written in hh:mm format
+            if (startHourField.getText().matches("^([01]?\\d|2[0-3]):[0-5]\\d$")) {
+                startHourField.getStyleClass().removeAll("error-field");
+                startDate = startDateField.getValue().atTime(
+                        Integer.parseInt(startHourField.getText().split(":")[0]),
+                        Integer.parseInt(startHourField.getText().split(":")[1])
+                );
+            } else {
+                errorLabel.setText("Please enter a valid start time");
+                errorFlag = true;
+                startHourField.getStyleClass().add("error-field");
+            }
+
+            // Check end time is written in hh:mm format
+            if (endHourField.getText().matches("^([01]?\\d|2[0-3]):[0-5]\\d$")) {
+                endHourField.getStyleClass().removeAll("error-field");
+                endDate = startDateField.getValue().atTime(
+                        Integer.parseInt(endHourField.getText().split(":")[0]),
+                        Integer.parseInt(endHourField.getText().split(":")[1])
+                );
+            } else {
+                errorLabel.setText("Please enter a valid end time");
+                errorFlag = true;
+                endHourField.getStyleClass().add("error-field");
+            }
+
+            // Check end time is after start time
+            if (endDate.isBefore(startDate)) {
+                errorLabel.setText("Please enter a valid end time");
+                errorFlag = true;
+                endHourField.getStyleClass().add("error-field");
+            }
         }
 
         // Check guest number is an integer
@@ -160,7 +244,7 @@ public class BookingFormController implements Initializable {
             numberOfGuests = Integer.parseInt(guestField.getText());
             guestField.getStyleClass().removeAll("error-field");
         } catch (NumberFormatException ex) {
-            errorLabel.setText("Please enter integers only in the Number of Guests");
+            errorLabel.setText("Please enter a valid number of Guests");
             errorFlag = true;
             guestField.getStyleClass().add("error-field");
         }
@@ -230,6 +314,10 @@ public class BookingFormController implements Initializable {
             desiredAccommodation.setHasJacuzzi(firstOption.isSelected());
             desiredAccommodation.setHasEnsuiteBathroom(secondOption.isSelected());
         }
+        else if (accommodationType == AccommodationType.CONFERENCE_ROOM) {
+            desiredAccommodation.setHasProjector(firstOption.isSelected());
+        }
+
         if (accommodationType == AccommodationType.SINGLE_ROOM) {
             if (numberOfGuests > 1) {
                 errorLabel.setText("Single rooms hold only one guest");
@@ -243,6 +331,20 @@ public class BookingFormController implements Initializable {
             booking = new Booking(desiredAccommodation, boardBasis, new Guest[numberOfGuests], startDate, endDate, paymentMethod);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
             Main.mainHotel.checkin(booking);
+
+            try {
+                AnchorPane content = FXMLLoader.load(getClass().getResource("/org/hotelbooking/controllers/bookingList.fxml"));
+
+                AnchorPane.setTopAnchor(content, 0.0);
+                AnchorPane.setBottomAnchor(content, 0.0);
+                AnchorPane.setLeftAnchor(content, 0.0);
+                AnchorPane.setRightAnchor(content, 0.0);
+
+                parentAnchorPane.getChildren().setAll(content);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+
         } catch (IllegalStateException ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("Error Booking");
