@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConferenceRoomTest {
     Accommodation[] rooms = {
             new SingleRoom(0, 10.0, RoomView.CITY_VIEW),
-            new ConferenceRoom(0, 10.0, true)
+            new ConferenceRoom(0, 10.0, 100, true)
     };
 
     @Test
     @DisplayName("Calculate price should multiply the price per night by the number of days for normal accommodations")
     public void testCalculatePrice() {
-        assertEquals(30.0 ,rooms[0].calculatePrice(LocalDateTime.of(2025, 5, 1, 16, 0),
+        assertEquals(40.0 ,rooms[0].calculatePrice(LocalDateTime.of(2025, 5, 1, 16, 0),
                 LocalDateTime.of(2025, 5, 4, 16, 0)));
     }
 

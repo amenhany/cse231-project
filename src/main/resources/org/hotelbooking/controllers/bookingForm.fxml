@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parentAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="664.0" stylesheets="@../../../css/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotelbooking.controllers.BookingFormController">
+    <children>
+      <VBox prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-background-radius: 3em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label prefHeight="86.0" prefWidth="314.0" text="New Booking">
+               <font>
+                  <Font name="Roboto Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" top="25.0" />
+               </padding>
+            </Label>
+            <Line endX="178.2928924560547" startX="-100.0">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER" prefHeight="261.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="265.0" prefWidth="276.0">
+                     <children>
+                              <Label text="Accommodation Type" />
+                              <ChoiceBox fx:id="accommodationTypeChoiceBox" prefHeight="25.0" prefWidth="176.0" />
+                              <Label fx:id="startDateLabel" text="Start Date">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                              <DatePicker fx:id="startDateField" prefHeight="23.0" prefWidth="176.0" />
+                              <Label fx:id="endDateLabel" text="End Date">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                              <DatePicker fx:id="endDateField" prefHeight="23.0" prefWidth="176.0" />
+                              <Label text="Payment Method">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="14.0" prefWidth="100.0">
+                           <children>
+                              <RadioButton fx:id="visaRadioButton" mnemonicParsing="false" text="VISA">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="paymentMethodGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="cashRadioButton" mnemonicParsing="false" text="Cash" toggleGroup="$paymentMethodGroup">
+                                 <HBox.margin>
+                                    <Insets left="80.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="131.0" prefWidth="132.0" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="errorLabel" prefHeight="15.0" prefWidth="442.0" text="Please enter numbers only." textFill="#ff3939" visible="false">
+                           <VBox.margin>
+                              <Insets bottom="40.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="280.0" prefWidth="73.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="172.0" prefWidth="129.0">
+                     <children>
+                        <Label text="Board Basis" />
+                        <ChoiceBox fx:id="boardBasisChoiceBox" prefHeight="25.0" prefWidth="176.0" />
+                              <Label text="Number of Guests">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                              <TextField fx:id="guestField" prefHeight="25.0" prefWidth="98.0" />
+                        <Label fx:id="numberOfRoomsLabel" text="Number of Rooms">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="numberOfRoomsField" prefHeight="25.0" prefWidth="98.0" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="376.0" prefWidth="73.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="333.0" prefWidth="220.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="168.0">
+                           <children>
+                                    <CheckBox fx:id="firstOption" mnemonicParsing="false" text="Pool" visible="false" />
+                                    <CheckBox fx:id="secondOption" mnemonicParsing="false" text="Jacuzzi" visible="false">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                        <Label fx:id="roomViewLabel" text="Room View">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="roomViewChoiceBox" prefHeight="23.0" prefWidth="179.0" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="168.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="startHourLabel" text="From" />
+                                    <TextField fx:id="startHourField" prefHeight="23.0" prefWidth="42.0" promptText="11:00" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="endHourLabel" text="Till" />
+                                    <TextField fx:id="endHourField" prefHeight="23.0" prefWidth="42.0" promptText="13:00" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <VBox prefHeight="131.0" prefWidth="132.0" VBox.vgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="132.0" VBox.vgrow="ALWAYS">
+                           <children>
+                                    <Button mnemonicParsing="false" onAction="#onSubmit" prefHeight="38.0" prefWidth="86.0" text="Submit">
+                                 <HBox.margin>
+                                    <Insets bottom="40.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="333.0" prefWidth="43.0" HBox.hgrow="ALWAYS" />
+               </children>
+               <VBox.margin>
+                  <Insets left="40.0" right="40.0" top="40.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

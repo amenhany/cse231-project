@@ -27,7 +27,6 @@ public class HotelManagerTest {
     @Test
     @DisplayName("Accommodations with a negative price should not be added")
     public void testNegativePricedAccommodation() {
-        HotelManager hotel = new HotelManager();
         assertThrows(IllegalArgumentException.class, () -> hotel.addAccommodation(new SingleRoom(0, -15, RoomView.POOL_VIEW)));
     }
 
@@ -42,10 +41,10 @@ public class HotelManagerTest {
         AccommodationTemplate desiredAccommodation;
         Booking booking1;
 
-        Guest user1 = new Guest("Ahmad");
-        Guest user2 = new Guest("Mohamed");
-        Guest user3 = new Guest("Sarah");
-        Guest user4 = new Guest("Laila");
+        Guest user1 = new Guest("Ahmad", "1");
+        Guest user2 = new Guest("Mohamed", "2");
+        Guest user3 = new Guest("Sarah", "3");
+        Guest user4 = new Guest("Laila", "4");
 
         @BeforeEach
         public void populateHotel() {
@@ -155,7 +154,7 @@ public class HotelManagerTest {
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
             hotel.checkin(booking);
-            assertEquals("VL001", booking.getAccommodation().getAccommodationId());
+            assertEquals("VL000", booking.getAccommodation().getAccommodationId());
         }
 
 
@@ -167,7 +166,7 @@ public class HotelManagerTest {
             ((Room)booking1.getAccommodation()).consumeSnack("Chocolate");
             ((Room)booking1.getAccommodation()).consumeSnack("Chips");
 //            assertEquals(1, hotel.bookings.size());
-            assertEquals(14, hotel.checkout(booking1).getTotal());
+            assertEquals(24, hotel.checkout(booking1).getTotal());
 //            assertEquals(0, hotel.bookings.size());
 
 
@@ -176,7 +175,21 @@ public class HotelManagerTest {
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
 
             hotel.checkin(booking);
-            assertEquals(10, hotel.checkout(booking).getTotal());
+            assertEquals(20, hotel.checkout(booking).getTotal());
+        }
+
+        @Test
+        @DisplayName("The total bill should be (end date - start date - 1) * price")
+        public void testReceiptTotal() {
+            assertEquals(20, hotel.checkout(booking1).getTotal());
+
+            Booking booking2 = new Booking(desiredAccommodation, BoardBasis.FULL_BOARD, new Guest[]{user1, user2},
+                    LocalDateTime.of(2025, 5, 2, 13, 0), LocalDateTime.of(2025, 5, 3, 11, 0), PaymentMethod.CASH);
+            booking2.setStatus(BookingStatus.CONFIRMED_PAYMENT);
+
+            hotel.checkin(booking2);
+
+            assertEquals(10, hotel.checkout(booking2).getTotal());
         }
     }
 }

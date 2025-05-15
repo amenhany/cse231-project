@@ -34,7 +34,6 @@ public class AccommodationTemplate {
     }
 
 
-
     public void setIsBedKingSize(boolean bedKingSize) {
         if (accommodationType == DOUBLE_ROOM) {
             isBedKingSize = bedKingSize;

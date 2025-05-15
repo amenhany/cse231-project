@@ -1,0 +1,24 @@
+.root {
+    -fx-font-family: Roboto;
+}
+
+.button {
+    -fx-background-color: #198754;
+    -fx-background-radius: 0.5em;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #157347;
+}
+
+.button:pressed {
+    -fx-background-color: #157347;
+}
+
+.error-field {
+    -fx-border-width: 3px;
+    -fx-border-color: #ff3939;
+    -fx-border-radius: 3px;
+}

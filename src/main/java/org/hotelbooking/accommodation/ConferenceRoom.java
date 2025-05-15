@@ -8,8 +8,8 @@ public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable 
     private boolean hasProjector;
 
 
-    public ConferenceRoom(int conferenceRoomNumber, double hourlyRate,boolean hasProjector){
-        super("CO"+ String.format("%03d", conferenceRoomNumber), 0, 100);
+    public ConferenceRoom(int conferenceRoomNumber, double hourlyRate, int capacity,boolean hasProjector){
+        super("CO"+ String.format("%03d", conferenceRoomNumber), 0, capacity);
         this.hourlyRate= hourlyRate;
         this.hasProjector= hasProjector;
     }
@@ -28,7 +28,7 @@ public class ConferenceRoom extends Accommodation implements ExtraFeeApplicable 
         return hours*hourlyRate;
     }
 
-    public  boolean matches(AccommodationTemplate template){
+    public boolean matches(AccommodationTemplate template){
         return (template.getAccommodationType() == AccommodationType.CONFERENCE_ROOM) && (template.hasProjector() == hasProjector) ;
     }
 

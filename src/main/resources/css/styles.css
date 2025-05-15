@@ -1,0 +1,18 @@
+.root {
+    -fx-font-family: Roboto;
+}
+
+.button {
+    -fx-background-color: #242933;
+    -fx-background-radius: 1em;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color:  #2d333f;
+}
+
+.button:pressed {
+    -fx-background-color: #2d333f;
+}

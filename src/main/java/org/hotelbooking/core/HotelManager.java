@@ -6,7 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HotelManager {
     private final List<Accommodation> accommodations;
@@ -18,12 +20,19 @@ public class HotelManager {
         bookings = new ArrayList<>();
     }
 
+    public List<Booking> getBookingsByEmail(String email) {
+        return bookings.stream()
+                .filter(booking -> Arrays.stream(booking.getGuests())
+                        .anyMatch(guest -> guest.getEmail().equalsIgnoreCase(email)))
+                .collect(Collectors.toList());
+    }
+
     public void addAccommodation (@NotNull Accommodation accommodation) throws IllegalArgumentException {
-        if(accommodation.getPricePerNight() <= 0 ){
-            throw new IllegalArgumentException("Price can't be negative");
+        if(accommodation.getPricePerNight() < 0 ){
+            throw new IllegalArgumentException("Price can not be negative");
         }
         if(accommodation.getCapacity() <= 0 ){
-            throw new IllegalArgumentException("Capacity can't be negative");
+            throw new IllegalArgumentException("Capacity must be greater than 0");
         }
         for(Accommodation entry : accommodations) {
             if(entry.getAccommodationId().equals(accommodation.getAccommodationId())){

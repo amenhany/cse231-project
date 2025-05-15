@@ -31,6 +31,10 @@ public abstract class Room extends Accommodation {
       return template.getView() == view;
     }
 
+    public RoomView getView(){
+        return view;
+    }
+
     public double getSnackBill(){
         return snackBill;
     }
