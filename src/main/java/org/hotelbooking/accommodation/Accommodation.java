@@ -12,7 +12,6 @@ public abstract class Accommodation implements Comparable<Accommodation> {
     protected double discount;
 
 
-
     protected Accommodation(String accommodationId, double pricePerNight, int capacity) {
         this.accommodationId = accommodationId;
         this.pricePerNight = pricePerNight;
@@ -33,7 +32,7 @@ public abstract class Accommodation implements Comparable<Accommodation> {
     }
 
     public double calculatePrice(LocalDateTime startDate,LocalDateTime endDate){
-        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate) + 1;
         return daysBetween*pricePerNight;
     }
 

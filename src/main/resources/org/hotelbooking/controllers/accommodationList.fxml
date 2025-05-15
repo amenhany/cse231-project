@@ -17,7 +17,7 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label prefHeight="86.0" prefWidth="314.0" text="Accommodations">
+                        <Label prefHeight="86.0" prefWidth="314.0" text="My Accommodations">
                            <font>
                               <Font name="Roboto Bold" size="18.0" />
                            </font>
@@ -48,16 +48,15 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="261.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
+            <VBox fx:id="list" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <VBox prefHeight="333.0" prefWidth="178.0" />
-                  <HBox prefHeight="333.0" prefWidth="182.0" HBox.hgrow="ALWAYS" />
-                  <VBox prefHeight="172.0" prefWidth="158.0" />
-               </children>
-               <VBox.margin>
-                  <Insets left="40.0" right="40.0" top="40.0" />
-               </VBox.margin>
-            </HBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="List is empty" textFill="#00000080" />
+                        <Label text="Try adding an Accommodation!" textFill="#00000080" />
+                     </children>
+                  </VBox>
+               </children></VBox>
          </children>
       </VBox>
    </children>

@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class HomeController {
 
-    String usernameString;
-    String emailString;
+    private static String usernameString;
+    private static String emailString;
 
     @FXML
     Text username;
@@ -36,10 +36,19 @@ public class HomeController {
     @FXML
     Button accommodationsButton;
 
+
     public void displayName(String username, String email) {
         this.username.setText(username);
         this.emailString = email;
         this.usernameString = username;
+    }
+
+    public static String getEmail() {
+        return emailString;
+    }
+
+    public static String getUsername() {
+        return usernameString;
     }
 
     public void handleLogout(ActionEvent event) {

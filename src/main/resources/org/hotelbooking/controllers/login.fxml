@@ -53,6 +53,6 @@
       </Button>
       <Line endX="207.0" layoutX="113.0" layoutY="158.0" startX="-58.0" />
       <Line endX="207.0" layoutX="113.0" layoutY="344.0" startX="-58.0" />
-      <Label fx:id="emailErrorLabel" visible="false" layoutX="55.0" layoutY="248.0" text="Email field can not be empty" textFill="#ff3939" />
+      <Label fx:id="emailErrorLabel" visible="false" layoutX="55.0" layoutY="248.0" text="Please enter a valid email" textFill="#ff3939" />
    </children>
 </AnchorPane>

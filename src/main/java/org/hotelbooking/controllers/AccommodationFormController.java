@@ -218,7 +218,7 @@ public class AccommodationFormController implements Initializable {
                 accommodation = new Suite(accommodationNumber, pricePerNight, capacity, roomView, firstOption.isSelected(), secondOption.isSelected());
             }
             else if (accommodationType == AccommodationType.CONFERENCE_ROOM) {
-                accommodation = new ConferenceRoom(accommodationNumber, pricePerNight, firstOption.isSelected());
+                accommodation = new ConferenceRoom(accommodationNumber, pricePerNight, capacity, firstOption.isSelected());
             }
         }
 

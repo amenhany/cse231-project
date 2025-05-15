@@ -201,7 +201,7 @@ public class BookingFormController implements Initializable {
                 endDateField.getStyleClass().add("error-field");
             } else {
                 endDateField.getStyleClass().removeAll("error-field");
-                endDate = endDateField.getValue().atTime(13, 0);
+                endDate = endDateField.getValue().atTime(11, 0);
             }
         }
         else {
@@ -328,7 +328,9 @@ public class BookingFormController implements Initializable {
         }
 
         try {
-            booking = new Booking(desiredAccommodation, boardBasis, new Guest[numberOfGuests], startDate, endDate, paymentMethod);
+            Guest[] guests = new Guest[numberOfGuests];
+            guests[0] = new Guest(HomeController.getUsername(), HomeController.getEmail());
+            booking = new Booking(desiredAccommodation, boardBasis, guests, startDate, endDate, paymentMethod);
             booking.setStatus(BookingStatus.CONFIRMED_PAYMENT);
             Main.mainHotel.checkin(booking);
 

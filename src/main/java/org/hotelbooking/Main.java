@@ -13,7 +13,6 @@ import java.util.List;
 public class Main extends Application {
 
     public static HotelManager mainHotel = new HotelManager();
-    public static List<Booking> myBookings = new ArrayList<>();
 
     public static void main(String[] args) {
         Application.launch(args);

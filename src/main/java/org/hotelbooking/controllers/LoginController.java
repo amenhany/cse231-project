@@ -32,6 +32,23 @@ public class LoginController {
 
     public void register(ActionEvent event) throws IOException {
 
+        if (usernameField.getText().trim().isEmpty()) {
+            usernameErrorLabel.setVisible(true);
+            usernameField.getStyleClass().add("error-field");
+        } else {
+            usernameErrorLabel.setVisible(false);
+            usernameField.getStyleClass().removeAll("error-field");
+        }
+
+        if (emailField.getText().trim().isEmpty() || !emailField.getText().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+            emailErrorLabel.setVisible(true);
+            emailField.getStyleClass().add("error-field");
+            return;
+        } else {
+            emailErrorLabel.setVisible(false);
+            emailField.getStyleClass().removeAll("error-field");
+        }
+
         if (!usernameField.getText().trim().isEmpty() && !emailField.getText().trim().isEmpty()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/hotelbooking/controllers/home.fxml"));
             root = loader.load();
@@ -54,22 +71,6 @@ public class LoginController {
             stage.setY(newY);
 
             stage.show();
-        }
-
-        if (usernameField.getText().trim().isEmpty()) {
-            usernameErrorLabel.setVisible(true);
-            usernameField.getStyleClass().add("error-field");
-        } else {
-            usernameErrorLabel.setVisible(false);
-            usernameField.getStyleClass().removeAll("error-field");
-        }
-
-        if (emailField.getText().trim().isEmpty()) {
-            emailErrorLabel.setVisible(true);
-            emailField.getStyleClass().add("error-field");
-        } else {
-            emailErrorLabel.setVisible(false);
-            emailField.getStyleClass().removeAll("error-field");
         }
     }
 }

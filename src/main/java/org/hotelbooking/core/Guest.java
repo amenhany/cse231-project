@@ -7,21 +7,20 @@ import java.time.LocalDate;
 public class Guest {
     private final String name;
     private String email;
-    private LocalDate birthdate;
 
-    public Guest(String name) {
-        this.name = name;
-    }
 
-    public Guest(String name, String email, LocalDate birthdate) {
+    public Guest(String name, String email) {
         this.name = name;
         this.email = email;
-        this.birthdate = birthdate;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
     public String toString() {
-        return "Name: "+name+"\nDate of Birth: "+ birthdate +"\nEmail: "+email;
+        return "Name: "+name+"\nEmail: "+email;
     }
 
     public void displayInfo() {
