@@ -43,7 +43,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="usernameErrorLabel" visible="false" layoutX="55.0" layoutY="171.0" text="Username field can not be empty" textFill="#ff3939" />
+      <Label fx:id="usernameErrorLabel" layoutX="55.0" layoutY="171.0" text="Username field can not be empty" textFill="#ff3939" visible="false" />
       <TextField fx:id="usernameField" layoutX="55.0" layoutY="195.0" prefHeight="40.0" prefWidth="266.0" promptText="Username" style="-fx-font-family: Roboto;" />
       <TextField fx:id="emailField" layoutX="55.0" layoutY="271.0" prefHeight="40.0" prefWidth="266.0" promptText="Email" />
       <Button fx:id="registerButton" layoutX="109.0" layoutY="372.0" mnemonicParsing="false" onAction="#register" prefHeight="50.0" prefWidth="157.0" text="Register">
@@ -51,8 +51,8 @@
             <Font name="Roboto" size="14.0" />
          </font>
       </Button>
-      <Line endX="207.0" layoutX="113.0" layoutY="158.0" startX="-58.0" />
-      <Line endX="207.0" layoutX="113.0" layoutY="344.0" startX="-58.0" />
-      <Label fx:id="emailErrorLabel" visible="false" layoutX="55.0" layoutY="248.0" text="Please enter a valid email" textFill="#ff3939" />
+      <Line endX="207.0" layoutX="113.0" layoutY="158.0" startX="-58.0" stroke="WHITE" />
+      <Line endX="207.0" layoutX="113.0" layoutY="344.0" startX="-58.0" stroke="WHITE" />
+      <Label fx:id="emailErrorLabel" layoutX="55.0" layoutY="248.0" text="Please enter a valid email" textFill="#ff3939" visible="false" />
    </children>
 </AnchorPane>

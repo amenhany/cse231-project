@@ -62,7 +62,11 @@ public class Booking  implements Comparable<Booking>{
     }
 
     public void setStatus(BookingStatus status){
-        this.status=status;
+        if (status != BookingStatus.BOOKED) {
+            this.status = status;
+        } else {
+            System.out.println("Can not cancel booking; it is already booked.");
+        }
     }
 
     public void cancelBooking() {
