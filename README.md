@@ -1,8 +1,8 @@
-# Hotel Booking System 🏨
+# 🏨 Hotel Booking System
 
 This java program allows users to book into different accommodations in a hotel. An admin can populate the hotel with various types of accommodations. The program was made for the Advanced Programming course project.
 
-## Features 💥
+## 💥 Features
 - Heavy OOP structure
 - Snack functionality for rooms (including a snack inventory, snack bill, snack consumption and refill)
 - Made with gradle so it can be easily built
@@ -12,7 +12,15 @@ This java program allows users to book into different accommodations in a hotel.
 - All user bookings and accommodations are tracked by email
 - Only admins are authorized to add new accommodations
 
-## Installation 🔧
+## 📊 UML
+
+![IMG-20250415-WA0039](https://github.com/user-attachments/assets/0fd1534f-0709-441a-939d-f8592ceb1078)
+> [!NOTE]
+> Some classes and methods slightly changed since making the UML but the structure is the same.
+> The UML is also missing the modifiers but modifying the UML is not available currently
+
+
+## 🔧 Installation
 
 ### Requirements
 - `git` command line([Windows](https://git-scm.com/download/win) | [Linux](https://git-scm.com/download/linux) | [macOS](https://git-scm.com/download/mac)) installed
@@ -30,7 +38,7 @@ git clone https://github.com/amenhany/cse231-project.git
 gradlew run
 ```
 
-## How does it work?
+## ❓ How does it work?
 
 1. Login as an admin using the email `admin@hotelbooking.org`
 
